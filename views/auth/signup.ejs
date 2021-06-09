@@ -1,0 +1,46 @@
+<%- include('../partials/header') %> 
+<%- include('../partials/navbar') %> 
+
+   <div class="container w-75 mt-5 p-1 ">
+    <%- include('../partials/flash') %> 
+    <h1 style="font-family: 'Times New Roman', Times, serif;" class="mt-3 mb-3 m-auto">SignUp</h1>
+    <form action="/register" method="POST" class="needs-validation" novalidate>
+      <div class="mb-3 ">
+        <label for="exampleInputtext" class="form-label">Enter UserName</label>
+        <input type="text" name="username" class="form-control" id="exampleInputText" aria-describedby="textHelp" placeholder="Enter UserName" required>
+        <div class="invalid-feedback">
+          Please Write Your UserName.
+        </div>
+        <div class="valid-feedback">
+          Looks Good!
+        </div>
+      </div>
+        <div class="mb-3 ">
+          <label for="exampleInputtext" class="form-label">Enter Email</label>
+          <input type="email" name ="email"class="form-control" id="exampleInputText" aria-describedby="textHelp" placeholder="Enter Email Address" required>
+          <div class="invalid-feedback">
+            Please Mention your Email Address.
+          </div>
+          <div class="valid-feedback">
+            Looks Good!
+          </div>
+        </div>
+        <div class="mb-3 ">
+            <label for="exampleInputBody" class="form-label">Enter Password</label>
+            <br>
+            <input type="password" name="pass" class="form-control" id="exampleInputText" aria-describedby="textHelp" placeholder="Enter Password" required>
+            <div class="invalid-feedback">
+              Give A Valid Password.
+            </div>
+            <div class="valid-feedback">
+               Good!
+            </div>
+          </div>
+       
+        
+        <button type="submit" class="btn btn-outline-success mb-4">Register</button>
+      </form>
+
+   </div>
+    
+   <!-- <%- include('../partials/footer') %>  -->
