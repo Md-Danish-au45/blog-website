@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #006ba6;">
+  <div class="container-fluid">
+    <a href="/blogs"> <img src="images/blogger.png" alt="" > </a> &nbsp;
+    <a class="navbar-brand" href="/blogs"> iBlog</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/blogs">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="/blogs">Blogs</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="blogs/new">Add new Blog</a>
+        </li>
+
+      </ul>
+
+      <div class="navbar-nav ml-auto">
+        <%if(!currentUser){%>
+        <a href="/login" class="nav-link active"><i class="fas fa-user-plus"></i>&nbsp;Login</a>
+        <%}else{%>
+        <a href="#" class="nav-link active text-capitalize"><i class="fas fa-user"></i>&nbsp;<%=currentUser.username%></a>
+        <a href="/logout" class="nav-link active"><i class="fas fa-sign-out-alt"></i>&nbsp;Logout</a>
+        <%}%>
+      </div>
+
+      <!-- <div class="d-flex">
+              <a href="blogs/new" class="btn btn-warning">Add New Blog</a> 
+            </div> -->
+
+    </div>
+  </div>
+</nav>
