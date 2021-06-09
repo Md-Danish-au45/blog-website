@@ -1,0 +1,31 @@
+
+<%- include('../partials/header') %> 
+<%- include('../partials/navbar') %> 
+
+<div class="container w-75 mt-5 p-3">
+    <h3>Edit Blog</h3>
+    <br>
+    
+    <form action="/blogs/<%= foundBlog._id %>?_method=PATCH" method="POST" class="needs-validation" novalidate>
+    
+        <div class="mb-3 ">
+            <label for="exampleInputtext" class="form-label">Title</label>
+            <input type="text"  class="form-control" id="exampleInputText" aria-describedby="textHelp"  name ="title" required value="<%= foundBlog.title %>" >
+          </div>
+          <div class="mb-3 ">
+              <label for="exampleInputBody" class="form-label">Image URL</label>
+              <br>
+              <input type="text" class="form-control" id="exampleInputText" aria-describedby="textHelp" required name = "img" value="<%= foundBlog.img %>"> 
+            </div>
+          <div class="mb-3 ">
+            <label for="exampleInputBody" class="form-label">Content</label>
+            <br>
+            <textarea name="content" class="form-control" id="" name="bodycontent" cols="124" rows="5" required><%= foundBlog.bodycontent %></textarea>
+          </div>
+          
+          <button type="submit" class="btn btn-success mb-4">UPDATE</button>
+
+</form>
+</div>
+
+<%- include('../partials/footer') %> 

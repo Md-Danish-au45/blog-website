@@ -1,0 +1,43 @@
+<%- include("../partials/header")%>
+  <%- include('../partials/navbar') %>
+
+   <!-- cards -->
+
+   <div class="container mt-3 p-5">
+      
+
+
+    <div class="row">
+      <%for(let b of blogs){%>
+        <div class="col-lg-6">
+          <div class="card mb-3 mw-100 p-2 shadow-sm p-3 mb-5 bg-body rounded">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img class="index" src="<%= b.img %>" alt="..." width="170px" height="230px">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body ms-2">
+                  <h5 class="card-title">
+                    <%= b.title %>
+                  </h5>
+                  <p class="card-text">
+                    <%= b.bodycontent.substring(0,90)%>...
+                  </p>
+                  <p class="card-text"><small class="text-muted">Written By - <%= b.writer %></small></p>
+                  <a href="/blogs/<%= b._id %> " class="btn btn-outline-primary mb-1">Read More</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <%}%>
+    </div>
+
+
+
+
+</div>
+
+
+  <%- include('../partials/footer') %>
