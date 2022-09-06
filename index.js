@@ -4,7 +4,7 @@ const path = require('path');
 const methodOverride = require('method-override');
 const mongoose = require('mongoose');
 
-const seedDB = require('./seed');
+// const seedDB = require('./seed');
 
 // routes
 const blogRoutes = require('./routes/blogs')
@@ -32,7 +32,8 @@ const sessionConfig = {
 app.use(session(sessionConfig));
 app.use(flash());
 
-// Initilising the passport and sessions for storing the users info
+// Initialising the passport and sessions for storing the users info
+
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -42,22 +43,22 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 //  database connection
-
-mongoose.connect('mongodb://localhost:27017/BlogApp', 
+mongoose.set('useCreateIndex', true);
+mongoose.connect('mongodb+srv://MdDanish:0786786@cluster0.qfylmqm.mongodb.net/FPRT?retryWrites=true&w=majority', 
 {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false
 })
 .then( ()=>{
-    console.log("DB Connected!!!")
+    console.log("DB is Connected successfully!!!")
 })
 .catch( (err) => {
     console.log("Something Went Wrong!!!")
     console.log(err.message);
 })
 
-// seedDB();
+
 
 app.use((req, res, next) => {
     res.locals.success = req.flash('success');
@@ -74,6 +75,6 @@ app.get('/', (req, res) => {
 app.use(blogRoutes);
 app.use(authRoutes);
 
-app.listen(3000, () => {
-    console.log('server runnig at port 3000');
+app.listen(7200, () => {
+    console.log('server runnig at port 7200');
 })

@@ -4,11 +4,6 @@ const User = require('../models/user');
 const passport = require('passport');
 
 
-// routes.get('/fakeUser', async(req,res)=>{
-//     const user = new User({ email: 'sabeel@gmail.com',username:'sabeel' });
-//         const newUser = await User.register(user, 'sabeel12');
-//         res.send(newUser);
-// })
 
 // Get the signup form
 routes.get('/register', async (req, res) => {
@@ -18,6 +13,7 @@ routes.get('/register', async (req, res) => {
 routes.post('/register', async (req, res) => {
 
     try {
+        console.log(req.body)
        const user = new User({ username: req.body.username, email: req.body.email });
        const newUser = await User.register(user, req.body.pass);
        req.flash('success', 'Registered Successfully');
@@ -26,7 +22,7 @@ routes.post('/register', async (req, res) => {
     catch (e) {
         req.flash('error', e.message);
         res.redirect('/register')
-        // console.log(e.message);
+        console.log(e.message);
     }
     
 });
@@ -44,12 +40,14 @@ routes.post('/login',
             failureFlash: true
         }
     ), (req, res) => {
+        console.log(req.user.username)
         req.flash('success', `Welcome Back!! ${req.user.username}`)
         res.redirect('/blogs');
 });
 
 // Logout the user from the current session
 routes.get('/logout', (req, res) => {
+
     req.logout();
     req.flash('success', 'Logged Out Successfully');
     res.redirect('/login');

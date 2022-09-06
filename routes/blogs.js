@@ -31,6 +31,7 @@ routes.get('/blogs/new', isLoggedIn, (req, res) => {
 // Create a new blog
 routes.post('/blogs', isLoggedIn, async(req, res) => {
     try{   
+        console.log(req.body)
    await Blog.create(req.body);
    req.flash('success', 'New Blog Addded Successfully!');
     res.redirect('/blogs');  // by default get request 
@@ -75,6 +76,7 @@ routes.get('/blogs/:id/edit', isLoggedIn, async (req,res) => {
 routes.patch('/blogs/:id', isLoggedIn, async(req, res) => {
     try{
     await Blog.findByIdAndUpdate(req.params.id, req.body);
+    console.log(req.body)
     req.flash('success', 'Updated Successfully!');
     res.redirect(`/blogs/${req.params.id}`);
     }catch (e){
@@ -84,6 +86,8 @@ routes.patch('/blogs/:id', isLoggedIn, async(req, res) => {
     }
     
 })
+
+
 
 // delete a particular blog
 routes.delete('/blogs/:id', isLoggedIn, async(req, res) => {
@@ -108,13 +112,14 @@ routes.post('/blogs/:id/review', isLoggedIn, async (req, res) => {
         user:req.user.username,
         ...req.body
     });
-    // console.log(review);
+    console.log(review);
 
     blog.reviews.push(review);
 
     await review.save();
     await blog.save();
     req.flash('success','Successfully added your review!')
+    console.log(req.params.id   )
     res.redirect(`/blogs/${req.params.id}`);
     }catch(e){
         console.log(e.message);
