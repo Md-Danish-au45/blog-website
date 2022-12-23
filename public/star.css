@@ -108,7 +108,7 @@
   
   .starability-slot > label {
     position: relative;
-    float: left;
+    /* float: left; */
     display: inline-block;
     
     width: 30px;

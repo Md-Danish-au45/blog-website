@@ -3,8 +3,11 @@ const app = express();
 const path = require('path');
 const methodOverride = require('method-override');
 const mongoose = require('mongoose');
+const {initDB} = require("./dbConfig")
+const dotenv = require("dotenv")
+mongoose.set('strictQuery', true);
+dotenv.config({path:"./.env"})
 
-// const seedDB = require('./seed');
 
 // routes
 const blogRoutes = require('./routes/blogs')
@@ -37,26 +40,15 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
+
+
 // configuring the passport to use local strategy
 passport.use(new LocalStrategy(User.authenticate()))
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-//  database connection
-mongoose.set('useCreateIndex', true);
-mongoose.connect('mongodb+srv://MdDanish:0786786@cluster0.qfylmqm.mongodb.net/FPRT?retryWrites=true&w=majority', 
-{
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false
-})
-.then( ()=>{
-    console.log("DB is Connected successfully!!!")
-})
-.catch( (err) => {
-    console.log("Something Went Wrong!!!")
-    console.log(err.message);
-})
+// DATAbase
+initDB()
 
 
 
@@ -75,6 +67,7 @@ app.get('/', (req, res) => {
 app.use(blogRoutes);
 app.use(authRoutes);
 
-app.listen(7200, () => {
-    console.log('server runnig at port 7200');
+const port = process.env.PORT || 7200
+app.listen(port,() =>{
+    console.log(`listening to port ${port}.....`)
 })
